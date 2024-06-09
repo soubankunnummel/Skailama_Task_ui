@@ -30,7 +30,7 @@ export default function SideBar({ isOpen, toggleSidebar }) {
     else if (RouteName.includes('/podcasts/1/Settings')){
       setSelectedItem('Settings')
     }
-  }, [RouteName]);
+  }, );
 
   // handle item click
   const handleItemClick = (title) => {

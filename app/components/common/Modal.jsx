@@ -107,6 +107,8 @@ const Modal = forwardRef(
   }
 );
 
+Modal.displayName = "Modal";
+
 
 export default Modal;
 

@@ -29,7 +29,7 @@ export default function Project() {
         setPodcasts(res?.data?.podcast);
         setLoading(false);
       });
-  },[])
+  },)
 
   const openModal = (icon) => {
     setSelectedIcon(icon);

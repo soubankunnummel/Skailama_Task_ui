@@ -26,7 +26,7 @@ export default function Home() {
     if (!user && modalRef.current) {
       modalRef.current.showModal();
     }
-  }, []);
+  },);
 
   const closeModal = () => {
     if (modalRef.current) {
