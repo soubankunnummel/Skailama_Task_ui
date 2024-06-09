@@ -2,11 +2,13 @@
 import Modal from "@/app/components/common/Modal";
 import Podcasts from "@/app/components/common/Podcasts";
 import TableSkeleton from "@/app/components/specific/TableSkelton";
-import { CreatePodcast, deletePodcats } from "@/app/services/apis/podcstsService";
+import {
+  CreatePodcast,
+  deletePodcats,
+} from "@/app/services/apis/podcstsService";
 import { getProjectById } from "@/app/services/apis/projectService";
 import { formatDate } from "@/app/utils/helpers";
 import { Data } from "@/public/assets/data/podcstData";
-// import { data } from "@/public/assets/data/projectData";
 import { useRouter, useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
@@ -15,21 +17,18 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 export default function Project() {
   const modalRef = useRef(null);
   const Router = useRouter();
-  const [selectedIcon, setSelectedIcon] = useState(null)
+  const [selectedIcon, setSelectedIcon] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [podcasts,setPodcasts] = useState([])
-  const {project} = useParams();
-  
-  
- 
+  const [podcasts, setPodcasts] = useState([]);
+  const { project } = useParams();
 
   // ->>> get all podcsts from one project
   useEffect(() => {
     getProjectById(project).then((res) => {
-        setPodcasts(res?.data?.podcast);
-        setLoading(false);
-      });
-  },)
+      setPodcasts(res?.data?.podcast);
+      setLoading(false);
+    });
+  });
 
   const openModal = (icon) => {
     setSelectedIcon(icon);
@@ -40,9 +39,9 @@ export default function Project() {
 
   /// ->>> create podcast
   const handleCreate = (inputValue, secondInputValue) => {
-    CreatePodcast(project,inputValue,secondInputValue).then((res) => {
+    CreatePodcast(project, inputValue, secondInputValue).then((res) => {
       setPodcasts((priv) => [...priv, res.data]);
-    })
+    });
   };
 
   const closeModal = () => {
@@ -67,7 +66,7 @@ export default function Project() {
           label: "Yes",
           onClick: () => {
             deletePodcats(id).then((res) => {
-              setPodcasts(podcasts.filter(podcast => podcast._id !== id));
+              setPodcasts(podcasts.filter((podcast) => podcast._id !== id));
             });
           },
         },
@@ -77,10 +76,12 @@ export default function Project() {
       ],
     });
   };
-  
+
   return (
     <div className="w-full md:h-[395px]   h-full flex flex-col gap-3 md:relative  overflow-y-auto hide-scrollbar">
-      <h1 className="text-primery md:text-[30px] text-[24px]  font-bold">Heading</h1>
+      <h1 className="text-primery md:text-[30px] text-[24px]  font-bold">
+        Heading
+      </h1>
       <div className="w-full flex items-center md:justify-start justify-center gap-5 flex-wrap">
         {Data.map((item, index) => (
           <Podcasts
@@ -120,55 +121,54 @@ export default function Project() {
       <div className="w-full  h-full  rounded-lg  overflow-x-auto hide-scrollbar">
         {/* table */}
 
-        {podcasts?.length <= 0 && <TableSkeleton/>}
-      {loading ? (  
-        <TableSkeleton/>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>
-                  {" "}
-                  <h1 className="font-bold">Nmae</h1>
-                </th>
-                <th>Upload Date & Time</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              
-              {podcasts?.map((item, index) => (
-                <tr key={index}>
-                  <td> {item.title} </td>
-                  <td>{formatDate(item.date)} </td>
-                  <td>{item.status} </td>
-                  <td>
-                    <div className="flex ">
-                      <button
-                        className="p-2 rounded-l-md  border hover:border-black   "
-                        onClick={() => handleEdit(item._id)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="p-2 rounded-r-md hover:border-black  border text-red-600"
-                        onClick={() => handleDelete(item._id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+        {podcasts?.length <= 0 && <TableSkeleton />}
+        {loading ? (
+          <TableSkeleton />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>
+                    {" "}
+                    <h1 className="font-bold">Nmae</h1>
+                  </th>
+                  <th>Upload Date & Time</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-        
+              </thead>
+              <tbody>
+                {/* row 1 */}
+
+                {podcasts?.map((item, index) => (
+                  <tr key={index}>
+                    <td> {item.title} </td>
+                    <td>{formatDate(item.date)} </td>
+                    <td>{item.status} </td>
+                    <td>
+                      <div className="flex ">
+                        <button
+                          className="p-2 rounded-l-md  border hover:border-black   "
+                          onClick={() => handleEdit(item._id)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="p-2 rounded-r-md hover:border-black  border text-red-600"
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

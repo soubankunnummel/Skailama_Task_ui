@@ -25,12 +25,9 @@ export const getUser = async () => {
 
 /// ->>> edit user
 
-export const edituser = async (formData) => {
+export const edituser = async (name) => {
   try {
-    const response = await Axios.patch("/user", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+    const response = await Axios.patch("/user", {name}, {
     });
     return response;
   } catch (error) {

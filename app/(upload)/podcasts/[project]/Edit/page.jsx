@@ -22,7 +22,7 @@ function Edit() {
       setEditedDescription(res?.data?.description);
       setLoading(false);
     });
-  },);
+  },[]);
 
   const handleSave = () => {
     EditPodcast(project, editedDescription).then((res) => {

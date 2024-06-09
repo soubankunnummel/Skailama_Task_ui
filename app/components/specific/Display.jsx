@@ -11,6 +11,7 @@ import {
 } from "@/public/assets/data/chatIcon";
 import { handleImageUpload } from "@/app/utils/helpers";
 import { createWidget } from "@/app/services/apis/widgetService";
+import Loading from "../common/Loading";
 
 
 
@@ -18,8 +19,9 @@ export default function Display({ onUpdate }) {
   const [showSources, setShowSources] = useState(true);
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imageFile, setImageFile] = useState(null);
-  
-  const [formValues, setFormValues] = useState({
+  const [loading, setLoading] = useState(false)
+
+  const [formValues, setFormValues] = useState({ 
     primaryColor: "",
     fontColor: "",
     fontSize: "",
@@ -56,6 +58,7 @@ export default function Display({ onUpdate }) {
   };
 
   const handleUpdate = () => {
+    setLoading(true)
     const formData = new FormData();
     Object.keys(formValues).forEach((key) => {
       formData.append(key, formValues[key]);
@@ -65,15 +68,28 @@ export default function Display({ onUpdate }) {
       formData.append("uploadedImage", imageFile);
     }
 
-    createWidget(formData).then((res) => console.log(res))
-
     // Send formData to the server
-    onUpdate(formData);
+    createWidget(formData).then((res) =>{
+      if(res.data){
+        setLoading(false)
+        window.location.reload()
+      }
+    })
+
   };
 
 
   return (
-    <form className="flex flex-col overflow-y-auto">
+    <form className="flex flex-col  overflow-y-auto">
+         {/* Loading */}
+         {loading && (
+        <div className="w-full h-full bg-white/[0.5] z-30 flex justify-center items-center backdrop-blur-[0.05px] absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto">
+          <Loading className="ring-2 ring-rose-500" />
+        </div>
+      )}
+      {/* Loading */}
+
+
       <div className="grid sm:grid-cols-2 grid-cols-1 sm:grid-rows-2 md:grid-rows-3   grid-rows-3 gap-3">
         <div className="flex  justify-between  items-end ">
           <InputField

@@ -13,19 +13,42 @@ function Widget({
 }) {
   const [messages, setMessages] = useState([]);
 
-  const bgColor = displaySettings.primaryColor
-    ? `bg-[${displaySettings.primaryColor}] `
-    : "bg-wihte";
-  const textColor = displaySettings.fontColor
-    ? `text-[${displaySettings.fontColor}] `
-    : "text-[#ddddd] ";
 
-  const fontSize = displaySettings.fontSize
-    ? `text-${displaySettings.fontSize}`
-    : "text-base";
-  const height = displaySettings.chatHeight
-    ? `h-[${displaySettings.chatHeight}%]`
-    : "h-[300px] md:h-[400px]";
+  // Extracting display settings
+  const { primaryColor, fontColor, fontSize, chatHeight } = displaySettings;
+
+  const containerStyle = {
+    position: "absolute",
+    right: 0,
+    top: "12px",
+    height: chatHeight ? `${chatHeight}%` : "300px",
+    backgroundColor: primaryColor ? primaryColor : "white",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    zIndex: 30,
+    transition: "transform 300ms ease-in-out",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+    padding: "16px",
+  };
+
+  const headerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+
+  const textStyle = {
+    textAlign: "right",
+    marginBottom: "8px",
+    backgroundColor: "#f0f4f8", // Default background color for text
+    padding: "8px",
+    borderRadius: "4px",
+    fontSize: fontSize ? `${fontSize}px` : "16px",
+    color: fontColor ? fontColor : "#333", // Default font color
+  };
 
   const handleSendMessage = () => {
     const messageInput = document.getElementById("messageInput");
@@ -37,38 +60,30 @@ function Widget({
   };
 
   return (
-    <div
-      className={` absolute right-0 top-12 ${height} ${bgColor}    border-primery  border   
-        z-30  transform transition-transform duration-300 flex flex-col justify-between ease-in-out shadow-md rounded-lg md:p-6 p-4  
-        `}
-    >
-      <div className="flex justify-between   items-center">
-        <h2 className="text-xl font-bold mb-4">{chatbotName}</h2>
-        <TiDelete className="text-3xl cursor-pointer" onClick={onRemove} />
+    <div style={containerStyle}>
+      <div style={headerStyle}>
+        <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>{chatbotName}</h2>
+        <TiDelete style={{ fontSize: "24px", cursor: "pointer" }} onClick={onRemove} />
       </div>
 
-      <div className="flex-grow overflow-y-auto md:p-2 shadow-lg rounded-lg">
+      <div style={{ flexGrow: 1, overflowY: "auto" }}>
         {messages.map((msg, index) => (
-          <div key={index} className="text-right mb-2">
-            <span
-              className={`inline-block bg-blue-50 shadow-sm ${fontSize} p-2 ${textColor} rounded-md`}
-            >
-              {msg}
-            </span>
+          <div key={index} style={textStyle}>
+            {msg}
           </div>
         ))}
       </div>
 
-      <div className="flex gap-4 mt-4">
+      <div style={{ display: "flex", marginTop: "16px" }}>
         <input
           type="text"
           id="messageInput"
-          className="flex-grow rounded-md md:p-2 p-3  border border-gray-300"
+          style={{ flexGrow: 1, padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }}
           placeholder={inputPlaceholder}
         />
         <button
           onClick={handleSendMessage}
-          className="p-4 rounded-md bg-blue-600 text-white"
+          style={{ padding: "12px", backgroundColor: "blue", color: "white", borderRadius: "4px", border: "none", cursor: "pointer" }}
         >
           <IoSend />
         </button>

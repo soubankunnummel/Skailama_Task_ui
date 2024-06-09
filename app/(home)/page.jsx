@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
-// import Nave from "./components/layout/Nave";
 import potcast from "@/public/assets/images/img/potcast.png";
 import plus from "@/public/assets/images/icons/plus.svg";
 import Button from "../components/common/Button";

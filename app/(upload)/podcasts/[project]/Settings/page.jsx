@@ -26,10 +26,9 @@ export default function Settings() {
 
   const handleSave = async () => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("name", user.name);
+
     try {
-      const res = await edituser(formData);
+      const res = await edituser({name: user.name });
       setUser({ ...user, name: res.data.name });
       setIsEditing(false);
     } catch (error) {

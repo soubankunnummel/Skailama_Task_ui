@@ -3,8 +3,9 @@ import React from "react";
 import chatBot from "@/public/assets/images/img/chatBot.png";
 
 export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
+
   let sizeClass = "";
-  switch (settings.chatIconSize) {
+  switch (settings?.chatIconSize) {
     case "small":
       sizeClass = "w-[48px] h-[48px]";
       break;
@@ -19,7 +20,7 @@ export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
   }
 
   let positionClass = "";
-  switch (settings.positionOnScreen) {
+  switch (settings?.positionOnScreen) {
     case "bottom-right":
       positionClass = "bottom-0 -right-10";
       break;
@@ -30,8 +31,8 @@ export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
       positionClass = "bottom-0 -right-10";
   }
 
-  const bottomDistance = settings.distanceFromBottom
-    ? `bottom-${settings.distanceFromBottom}`
+  const bottomDistance = settings?.distanceFromBottom
+    ? `bottom-${settings?.distanceFromBottom}`
     : "bottom-0";
 
   return (
@@ -49,7 +50,7 @@ export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
           height={50}
         />
         </div>
-        <div className="px-3 bg-yellow-50 rounded-md absolute -top-12 left-11">
+        <div className={`px-3 bg-white text-black  rounded-md absolute ${settings?.positionOnScreen === 'bottom-right' ? '-top-12 right-12': '-top-12 left-11'} `}>
           {welcomeMessage}
         </div>
       </div>

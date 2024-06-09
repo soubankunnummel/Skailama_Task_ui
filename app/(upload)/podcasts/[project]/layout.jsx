@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import SideBar from "@/app/components/layout/SideBar";
 import TopBar from "@/app/components/layout/TopBar";
 import React, { useState } from "react";

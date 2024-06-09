@@ -3,9 +3,12 @@
 import React, { useState } from "react";
 import InputField from "../common/InputField";
 import { addGenarel } from "@/app/services/apis/widgetService";
+import Loading from "../common/Loading";
 
 export default function General({ onSubmit }) {
   const [show, setShow] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     welcomeMessage: "",
@@ -27,11 +30,17 @@ export default function General({ onSubmit }) {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     if (validateForm()) {
       setShow(!show);
-      onSubmit(formData);
-      addGenarel(formData).then((res) => console.log(res));
+    
+      addGenarel(formData).then((res) => {
+        if (res.data) {
+          setLoading(false);
+          window.location.reload()
+        }
+      });
     }
   };
 
@@ -67,8 +76,15 @@ export default function General({ onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 hide-scrollbar"
+      className="flex flex-col gap-5 hide-scrollbar relative"
     >
+      {/* Loading */}
+      {loading && (
+        <div className="w-full h-full bg-white/[0.5] z-30 flex justify-center items-center backdrop-blur-[0.05px] absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto">
+          <Loading className="ring-2 ring-rose-500" />
+        </div>
+      )}
+      {/* Loading */}
       <InputField
         label="Chatbot Name"
         name="name"

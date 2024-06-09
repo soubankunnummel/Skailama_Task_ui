@@ -16,7 +16,6 @@ export default function Nave() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const modalRef = useRef(null);
   const Router = useRouter();
-  const [theme, toggleTheme] = useTheme()
 
   // Check if user is logged in
   useEffect(() => {
@@ -89,10 +88,7 @@ export default function Nave() {
             </ul>
           </div>
           <Image alt="settings" src={bell} width={30} height={30} />
-          <div onClick={toggleTheme}>
-            {theme === "dark" ? "Light Mode" : <IoMoonOutline className="text-3xl text-black"/>}
-            
-          </div>
+         
         </div>
       </div>
       <Modal
