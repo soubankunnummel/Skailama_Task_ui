@@ -52,12 +52,12 @@ function Projects() {
   }; 
 
   return (
-    <div className="w-full h-full px-[3%] flex justify-center   items-center relaative ">
+    <div className="w-full h-full px-[3%] flex justify-center md:mt-0 mt-20  items-center relaative ">
       <div className="w-[1100px] overflow-y-auto ">
         <BacktoHome />
 
         {/* ////////////title /////////////*/}
-        <div className="w-full flex mt-3 justify-between items-center">
+        <div className="w-full flex md:mt-3 mt-10 justify-between items-center">
           <h1 className="text-primery md:text-[40px] text-[28px] font-bold  ">Projects</h1>
           <Button
             text={"Create New Project"}

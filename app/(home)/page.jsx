@@ -13,7 +13,6 @@ import { toast } from "sonner";
 import { createProject } from "../services/apis/projectService";
 import Loading from "../components/common/Loading";
 
-
 export default function Home() {
   const [isCreate, setIsCreate] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ export default function Home() {
     if (!user && modalRef.current) {
       modalRef.current.showModal();
     }
-  },);
+  });
 
   const closeModal = () => {
     if (modalRef.current) {
@@ -49,25 +48,24 @@ export default function Home() {
     }
   };
 
-
   const handleSubmit = (inputValue) => {
     setLoading(true);
-  
+
     const onSuccess = (res) => {
       closeModal();
       Router.push("/projects");
       setLoading(false);
     };
-  
+
     const onError = (error) => {
-      toast.error(`Failed to ${isCreate ? 'create project' : 'create account'}`);
+      toast.error(
+        `Failed to ${isCreate ? "create project" : "create account"}`
+      );
       setLoading(false);
     };
-  
+
     if (isCreate) {
-      createProject(inputValue)
-        .then(onSuccess)
-        .catch(onError);
+      createProject(inputValue).then(onSuccess).catch(onError);
     } else {
       createAccount(inputValue)
         .then((res) => {
@@ -77,24 +75,17 @@ export default function Home() {
         .catch(onError);
     }
   };
-  
-
 
   return (
     <>
-      <div className="h-full w-full px-[3%] sm:px-[5%] sm:h-fit flex justify-center items-center">
-        
-
-        
-      {/* Loading */}
-      {loading && (
-        <div className="w-full h-full bg-white/[0.5] z-30 flex justify-center items-center backdrop-blur-[0.05px] absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto">
-          <Loading className="ring-2 ring-rose-500" />
-        </div>
-      )}
-      {/* Loading */}
-
-
+      <div className="h-full w-full px-[3%] sm:px-[5%] sm:h-fit mt-16 md:mt-0 flex justify-center items-center">
+        {/* Loading */}
+        {loading && (
+          <div className="w-full h-full bg-white/[0.5] z-30 flex justify-center items-center backdrop-blur-[0.05px] absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto">
+            <Loading className="ring-2 ring-rose-500" />
+          </div>
+        )}
+        {/* Loading */}
 
         <div className="mt-10 md:mt-0 md:w-[1100px] sm:w-[500px] sm:h-fit   ">
           <BacktoHome />
