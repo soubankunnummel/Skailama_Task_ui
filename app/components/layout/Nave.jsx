@@ -79,7 +79,7 @@ export default function Nave() {
             onMouseLeave={() => setShowDropdown(false)}
           >
             <ul className="p-2 shadow-xl menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-              <li>
+              <li onClick={() => Router.push('/podcasts/1/Settings')} className={`  ${isLoggedIn ? 'cursor-pointer':'cursor-not-allowed text-gray-400'}`}  >
                 <a>Profile</a>
               </li>
               <li onClick={isLoggedIn ? handleLogout : openLoginModal}>

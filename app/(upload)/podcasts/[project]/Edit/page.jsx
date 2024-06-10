@@ -35,21 +35,21 @@ function Edit() {
   return (
     <div className="w-full h-full">
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-primery text-[30px] font-bold mb-4">
+        <h1 className="text-primery md:text-[30px] text-[20px] font-bold mb-4">
           Edit Transcript
         </h1>
         <div className="flex gap-4">
           {show && (
             <>
               <button
-                className="border border-red-500 text-rose-500 rounded-xl flex justify-center items-center p-4"
+                className="border border-red-500 text-rose-500 rounded-xl flex justify-center items-center md:p-4 p-1"
                 onClick={() => setShow(false)}
               >
                 Discard
               </button>
               <Button
                 text={"Save & Exit"}
-                className={"p-3 text-[14px]"}
+                className={"md:p-3 p-3 text-[12px] md:text-[14px]"}
                 onClick={handleSave}
               />
             </>
