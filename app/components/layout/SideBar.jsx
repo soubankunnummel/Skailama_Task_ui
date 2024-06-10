@@ -46,7 +46,7 @@ export default function SideBar({ isOpen, toggleSidebar }) {
   };
 
   return (
-    <div className="w-[320px] h-full flex flex-col md:z-0 z-40 justify-between p-4 bg-[#F3E8FF]">
+    <div className="md:w-[320px] w-[220px] h-full flex flex-col md:z-0 z-40 justify-between p-4 bg-[#F3E8FF]">
       <div className="w-full h-auto flex flex-col gap-2">
         <div className="flex justify-between items-center">
           <Link href={"/"}>

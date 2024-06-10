@@ -10,7 +10,7 @@ export default function SidebarItem({ title, num, selected, onClick, index, icon
     // <Link href={`/${title}`}>
       <div
         className={classNames(
-          "w-full flex justify-start gap-3 cursor-pointer font-semibold items-center p-3  rounded-[132.5px] ",
+          "w-full flex justify-start gap-3 cursor-pointer font-semibold items-center md:p-3 p-2  rounded-[132.5px] ",
           {
             "text-white": selected,
             "text-black": !selected,
@@ -23,14 +23,14 @@ export default function SidebarItem({ title, num, selected, onClick, index, icon
       >
         <div
           className={classNames(
-            "w-[35px] h-[35px] rounded-full flex justify-center items-center",
+            "md:w-[35px] md:h-[35px] w-[22px] h-[22px] rounded-full flex justify-center items-center",
             selected ? "bg-btn text-white" : "bg-[#1d1b2045] text-white"
           )}
         >
           {num}
-          {icon && <Image alt="settings" src={icon} width={25} height={25} />}
+          {icon && <Image alt="settings" src={icon}  className="md:w-[25px] md:h-[25px] w-[19px] h-[19px] " />}
         </div>
-        {title}
+        <h1 className="text-[12px] md:text-[18px] ">{title}</h1>
       </div>
     // </Link>
   );
