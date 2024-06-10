@@ -11,10 +11,13 @@ import cookie from "js-cookie";
 import { createAccount } from "../services/apis/userService";
 import { toast } from "sonner";
 import { createProject } from "../services/apis/projectService";
+import Loading from "../components/common/Loading";
 
 
 export default function Home() {
   const [isCreate, setIsCreate] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const modalRef = useRef(null);
   const Router = useRouter();
   const user = cookie.get("token");
@@ -48,28 +51,51 @@ export default function Home() {
 
 
   const handleSubmit = (inputValue) => {
+    setLoading(true);
+  
+    const onSuccess = (res) => {
+      closeModal();
+      Router.push("/projects");
+      setLoading(false);
+    };
+  
+    const onError = (error) => {
+      toast.error(`Failed to ${isCreate ? 'create project' : 'create account'}`);
+      setLoading(false);
+    };
+  
     if (isCreate) {
-      createProject(inputValue).then((res) => {
-        closeModal();
-        Router.push("/projects");
-      }).catch((error) => {
-        toast.error("Failed to create project");
-      });
+      createProject(inputValue)
+        .then(onSuccess)
+        .catch(onError);
     } else {
-      createAccount(inputValue).then((res) => {
-        Cookies.set("token", res.data.token);
-        closeModal();
-        Router.push("/projects");
-      }).catch((error) => {
-        toast.error("Failed to create account");
-      });
+      createAccount(inputValue)
+        .then((res) => {
+          cookie.set("token", res.data.token);
+          onSuccess(res);
+        })
+        .catch(onError);
     }
   };
+  
 
 
   return (
     <>
       <div className="h-full w-full px-[3%] sm:px-[5%] sm:h-fit flex justify-center items-center">
+        
+
+        
+      {/* Loading */}
+      {loading && (
+        <div className="w-full h-full bg-white/[0.5] z-30 flex justify-center items-center backdrop-blur-[0.05px] absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto">
+          <Loading className="ring-2 ring-rose-500" />
+        </div>
+      )}
+      {/* Loading */}
+
+
+
         <div className="mt-10 md:mt-0 md:w-[1100px] sm:w-[500px] sm:h-fit   ">
           <BacktoHome />
           <div className="flex flex-col justify-center items-center gap-5">

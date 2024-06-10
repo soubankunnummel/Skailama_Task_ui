@@ -178,7 +178,7 @@ export default function Display({ onUpdate }) {
         <div className="flex flex-col">
           <h3 className="text-[20px] font-bold">Bot Icon</h3>
           <div className=" flex justify-start gap-6 items-center p-5">
-          <div className="md:w-[80px] md:h-[80px] w-[50px]  h-[50px] rounded-full flex justify-center items-center bg-primery overflow-hidden">
+          <div className="md:w-[80px] md:h-[80px] w-[50px]  h-[50px] rounded-full flex justify-center items-center bg-slate-300  overflow-hidden">
               {uploadedImage ? (
                 <Image src={uploadedImage} alt="Bot Icon" className="object-cover md:w-[80px] md:h-[80px] w-[50px]  h-[50px] "  width={100} height={100} />
               ) : (

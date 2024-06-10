@@ -28,7 +28,7 @@ export default function Settings() {
     setLoading(true);
 
     try {
-      const res = await edituser({name: user.name });
+      const res = await edituser( user.name );
       setUser({ ...user, name: res.data.name });
       setIsEditing(false);
     } catch (error) {
@@ -49,7 +49,7 @@ export default function Settings() {
       {/* Loading */}
 
       <div className="w-full">
-        <h1 className="md:text-[30px] text-[20px] text-start font-bold">Account Settings</h1>
+        <h1 className="md:text-[30px] text-[20px] text-start text-primery font-bold">Account Settings</h1>
       </div>
 
       {/* Edit Profile */}

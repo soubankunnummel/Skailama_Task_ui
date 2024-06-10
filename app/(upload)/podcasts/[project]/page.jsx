@@ -13,6 +13,7 @@ import { useRouter, useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { useSelector } from "react-redux";
 
 export default function Project() {
   const modalRef = useRef(null);
@@ -21,6 +22,8 @@ export default function Project() {
   const [loading, setLoading] = useState(true);
   const [podcasts, setPodcasts] = useState([]);
   const { project } = useParams();
+  const title = useSelector((state) => state.project.title);
+
 
   // ->>> get all podcsts from one project
   useEffect(() => {
@@ -80,7 +83,7 @@ export default function Project() {
   return (
     <div className="w-full md:h-[395px]   h-full flex flex-col gap-3 md:relative  overflow-y-auto hide-scrollbar">
       <h1 className="text-primery md:text-[30px] text-[24px]  font-bold">
-        Heading
+        {title}
       </h1>
       <div className="w-full flex items-center md:justify-start justify-center gap-5 flex-wrap">
         {Data.map((item, index) => (

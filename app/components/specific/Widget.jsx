@@ -41,13 +41,15 @@ function Widget({
   };
 
   const textStyle = {
-    textAlign: "right",
+    
+    textAlign: "left",
     marginBottom: "8px",
-    backgroundColor: "#f0f4f8", // Default background color for text
+    backgroundColor: "#f0f4f8",  
+    width:'fit-content',
     padding: "8px",
     borderRadius: "4px",
     fontSize: fontSize ? `${fontSize}px` : "16px",
-    color: fontColor ? fontColor : "#333", // Default font color
+    color: fontColor ? fontColor : "#333", 
   };
 
   const handleSendMessage = () => {
@@ -66,9 +68,9 @@ function Widget({
         <TiDelete style={{ fontSize: "24px", cursor: "pointer" }} onClick={onRemove} />
       </div>
 
-      <div style={{ flexGrow: 1, overflowY: "auto" }}>
+      <div className=" flex justify-evenly flex-col items-end overflow-x-auto hide-scrollbar flex-grow "  >
         {messages.map((msg, index) => (
-          <div key={index} style={textStyle}>
+          <div key={index} className="" style={textStyle}>
             {msg}
           </div>
         ))}

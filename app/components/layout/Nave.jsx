@@ -75,7 +75,7 @@ export default function Nave() {
             onMouseEnter={() => setShowDropdown(true)}
           />
           <div
-            className={`${showDropdown ? "block" : "hidden"} justify-center items-center absolute top-12 right-28`}
+            className={`${showDropdown ? "block" : "hidden"} justify-center items-center absolute shadow-xl  z-10 right-16 top-12 md:right-28`}
             onMouseLeave={() => setShowDropdown(false)}
           >
             <ul className="p-2 shadow-xl menu dropdown-content z-[1] bg-base-100 rounded-box w-52">

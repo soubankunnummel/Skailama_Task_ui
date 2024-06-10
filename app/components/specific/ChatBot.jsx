@@ -34,7 +34,7 @@ export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
   const bottomDistance = settings?.distanceFromBottom
     ? `bottom-${settings?.distanceFromBottom}`
     : "bottom-0";
-
+console.log(settings.positionOnScreen)
   return (
     <div
       className={`absolute ${bottomDistance} ${positionClass} transition-transform transform hover:scale-105 animate-bounce cursor-pointer`}
