@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef } from "react";
 import Modal from "@/app/components/common/Modal";
 
 const PodcastModal = forwardRef(
@@ -26,5 +26,7 @@ const PodcastModal = forwardRef(
     );
   }
 );
+
+PodcastModal.displayName = "PodcastModal";
 
 export default PodcastModal;

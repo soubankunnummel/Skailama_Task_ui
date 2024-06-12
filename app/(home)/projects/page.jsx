@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import useFetchProjects from "@/app/hooks/useFetchProjects";
 import Modal from "@/app/components/common/Modal";
 import { setId, setTitle } from "@/lib/features/podcasts/projectSlice";
+import { showError } from "@/app/utils/notifications";
 
 function Projects() {
   const Router = useRouter();
@@ -38,7 +39,7 @@ function Projects() {
           Router.push("/projects");
         })
         .catch((error) => {
-          toast.error("Failed to create project");
+          showError("Failed to create project");
         });
     }
   };
@@ -49,7 +50,7 @@ function Projects() {
     if (modalRef.current) {
       modalRef.current.close();
     }
-  }; 
+  };
   return (
     <div className="w-full h-full px-[3%] flex justify-center md:mt-6 mt-20  items-center relaative ">
       <div className="w-[1100px] overflow-y-auto ">
@@ -57,11 +58,15 @@ function Projects() {
 
         {/* ////////////title /////////////*/}
         <div className="w-full flex md:mt-3 mt-10 justify-between items-center">
-          <h1 className="text-primery md:text-[40px] text-[28px] font-bold  ">Projects</h1>
+          <h1 className="text-primery md:text-[40px] text-[28px] font-bold  ">
+            Projects
+          </h1>
           <Button
             text={"Create New Project"}
             icon={plus}
-            className={"md:w-[300px] md:h-[70px] sm:h-[60px] h-[40px] w-[200px] sm:w-[250px] "}
+            className={
+              "md:w-[300px] md:h-[70px] sm:h-[60px] h-[40px] w-[200px] sm:w-[250px] "
+            }
             onClick={handleCreate}
           />
         </div>
@@ -80,7 +85,7 @@ function Projects() {
                   onClick={() => {
                     Router.push(`podcasts/${item._id} `);
                     dispatch(setId(item._id));
-                    dispatch(setTitle(item.title))
+                    dispatch(setTitle(item.title));
                   }}
                   key={index}
                 />

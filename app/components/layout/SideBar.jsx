@@ -17,16 +17,18 @@ export default function SideBar({ isOpen, toggleSidebar }) {
   const [selectedItem, setSelectedItem] = useState(null);
 
   
-
   useEffect(() => {
-    if (RouteName.includes(`/podcasts/1`) || RouteName.includes(`/podcasts/${currentId}`)) {
-      setSelectedItem("Projects");
-    }
-    if (RouteName.includes("/podcasts/1/Settings")) {
-      setSelectedItem("Settings");
-    }
-  }, []);
+    const routes = [
+      // { path: `/podcasts/1`, title: "Projects" },
+      { path: `/podcasts/${currentId}`, title: "Projects" },
+      { path: `/podcasts/1/Settings`, title: "Settings" },
+    ];
 
+    const selectedRoute = routes.find(route => RouteName.includes(route.path));
+    if (selectedRoute) {
+      setSelectedItem(selectedRoute.title);
+    }
+  }, [RouteName, currentId]);
 
 
   // handle item click

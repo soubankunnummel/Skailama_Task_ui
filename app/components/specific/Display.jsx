@@ -200,10 +200,7 @@ export default function Display({ onUpdate }) {
               />
               
             </label>
-          
           </div>
-          
-        
         </div>
         
       </div>

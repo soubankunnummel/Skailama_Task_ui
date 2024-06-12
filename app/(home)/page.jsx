@@ -69,9 +69,9 @@ export default function Home() {
     } else {
       createAccount(inputValue)
         .then((res) => {
-          cookie.set("token", res.data.token);
+          cookie.set("token", res?.data?.token);
           onSuccess(res);
-        })
+        }) 
         .catch(onError);
     }
   };

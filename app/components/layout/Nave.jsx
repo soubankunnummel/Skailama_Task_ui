@@ -42,7 +42,7 @@ export default function Nave() {
   // Handle login
   const handleLogin = (inputValue) => {
     createAccount(inputValue).then((res) => {
-      Cookies.set("token", res.data.token);
+      Cookies.set("token", res?.data?.token);
       setIsLoggedIn(true);
       closeModal();
       Router.push("/projects");
