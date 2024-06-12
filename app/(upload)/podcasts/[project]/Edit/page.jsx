@@ -48,7 +48,7 @@ function Edit() {
       <div className="w-full h-[370px] border-primary border rounded-xl p-3 flex flex-col">
         <div className="w-full h-10 flex justify-between items-center">
           <div
-            className="w-[120px] h-[30px] rounded-full cursor-pointer transition-opacity duration-300 opacity-100 flex justify-center items-center bg-secondary text-white gap-3"
+            className="w-[120px] h-[30px] rounded-full cursor-pointer transition-opacity duration-300 opacity-100 flex justify-center items-center bg-secondery text-white gap-3"
             onClick={() => setIsEditing(!isEditing)}
           >
             <Image alt="Edit" src={pen} width={15} height={15} />

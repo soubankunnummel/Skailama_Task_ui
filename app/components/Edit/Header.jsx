@@ -4,7 +4,7 @@ import Button from "@/app/components/common/Button";
 const Header = ({ isEditing, setIsEditing, handleSave }) => {
   return (
     <div className="flex justify-between items-center mb-5">
-      <h1 className="text-primary md:text-[30px] text-[20px] font-bold mb-4">
+      <h1 className="text-primery md:text-[30px] text-[20px] font-bold mb-4">
         Edit Transcript
       </h1>
       <div className="flex gap-4">
