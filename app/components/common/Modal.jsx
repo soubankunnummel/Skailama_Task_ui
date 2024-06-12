@@ -55,7 +55,7 @@ const Modal = forwardRef(
     return (
       <dialog id={id} className="modal" ref={ref}>
         <div className="bg-white w-[90%] md:w-[60%] flex justify-center items-start text-center rounded-lg p-[3%] gap-3 flex-col">
-          { Pathname === '/' || isId?.length >= 5 ? (
+          {Pathname === '/projects' || Pathname === '/' || isId?.length >= 5 ? (
             <>
               <div className="flex gap-3">
                 {icon && <Image alt="log" src={icon} width={40} height={40} />}
