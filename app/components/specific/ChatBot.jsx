@@ -3,7 +3,6 @@ import React from "react";
 import chatBot from "@/public/assets/images/img/chatBot.png";
 
 export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
-
   let sizeClass = "";
   switch (settings?.chatIconSize) {
     case "small":
@@ -34,23 +33,34 @@ export default function ChatBot({ onClick, welcomeMessage, image, settings }) {
   const bottomDistance = settings?.distanceFromBottom
     ? `bottom-${settings?.distanceFromBottom}`
     : "bottom-0";
-console.log(settings.positionOnScreen)
   return (
     <div
       className={`absolute ${bottomDistance} ${positionClass} transition-transform transform hover:scale-105 animate-bounce cursor-pointer`}
       onClick={onClick}
     >
       <div className="relative">
-        <div className={`flex justify-center items-center bg-transparent  object-cover   rounded-lg`}>
-        <Image
-          alt="chatbot"
-          src={image ? image : chatBot}
-          className={`${sizeClass} object-cover rounded-xl`}
-          width={50}
-          height={50}
-        />
+        <div
+          className={`flex justify-center items-center bg-transparent  object-cover   rounded-lg`}
+        >
+          <Image
+            alt="chatbot"
+            src={image ? image : chatBot}
+            className={`${sizeClass} object-cover rounded-xl`}
+            width={50}
+            height={50}
+          />
         </div>
-        <div className={`px-3 bg-white text-black  rounded-md absolute ${settings?.positionOnScreen === 'bottom-right' ? '-top-12 right-12': '-top-12 left-11'} `}>
+        <div
+          className={`px-3 bg-white text-black  rounded-md absolute ${
+            settings?.positionOnScreen === "bottom-right"
+              ? "-top-12 right-12"
+              : settings?.positionOnScreen === "bottom-left"
+              ? "-top-12 left-11"
+              : settings?.positionOnScreen === " "
+              ? "-top-12 left-11"
+              : "-top-12 right-12"
+          }`}
+        >
           {welcomeMessage}
         </div>
       </div>

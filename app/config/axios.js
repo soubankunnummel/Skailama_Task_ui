@@ -5,8 +5,8 @@ import Cookies from 'js-cookie'
 
 
 export const Axios = axios.create({
-    // baseURL: 'http://localhost:8080/api',
-    baseURL: 'https://skailama-task-server.onrender.com/api',
+    baseURL: 'http://localhost:8080/api',
+    // baseURL: 'https://skailama-task-server.onrender.com/api',
     headers:{
         'Content-Type': 'application/json',
         Authorization: Cookies.get('token')

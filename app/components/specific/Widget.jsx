@@ -1,18 +1,10 @@
-
-
 "use client";
 import React, { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { IoSend } from "react-icons/io5";
 
-function Widget({
-  chatbotName,
-  inputPlaceholder,
-  displaySettings,
-  onRemove,
-}) {
+function Widget({ chatbotName, inputPlaceholder, displaySettings, onRemove }) {
   const [messages, setMessages] = useState([]);
-
 
   // Extracting display settings
   const { primaryColor, fontColor, fontSize, chatHeight } = displaySettings;
@@ -41,15 +33,14 @@ function Widget({
   };
 
   const textStyle = {
-    
     textAlign: "left",
     marginBottom: "8px",
-    backgroundColor: "#f0f4f8",  
-    width:'fit-content',
+    backgroundColor: "#f0f4f8",
+    width: "fit-content",
     padding: "8px",
     borderRadius: "4px",
     fontSize: fontSize ? `${fontSize}px` : "16px",
-    color: fontColor ? fontColor : "#333", 
+    color: fontColor ? fontColor : "#333",
   };
 
   const handleSendMessage = () => {
@@ -64,11 +55,18 @@ function Widget({
   return (
     <div style={containerStyle}>
       <div style={headerStyle}>
-        <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>{chatbotName}</h2>
-        <TiDelete style={{ fontSize: "24px", cursor: "pointer" }} onClick={onRemove} />
+        <h2
+          style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}
+        >
+          {chatbotName}
+        </h2>
+        <TiDelete
+          style={{ fontSize: "24px", cursor: "pointer" }}
+          onClick={onRemove}
+        />
       </div>
 
-      <div className=" flex justify-evenly flex-col items-end overflow-x-auto hide-scrollbar flex-grow "  >
+      <div className=" flex justify-evenly flex-col items-end overflow-x-auto hide-scrollbar flex-grow ">
         {messages.map((msg, index) => (
           <div key={index} className="" style={textStyle}>
             {msg}
@@ -80,12 +78,24 @@ function Widget({
         <input
           type="text"
           id="messageInput"
-          style={{ flexGrow: 1, padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }}
+          style={{
+            flexGrow: 1,
+            padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+          }}
           placeholder={inputPlaceholder}
         />
         <button
           onClick={handleSendMessage}
-          style={{ padding: "12px", backgroundColor: "blue", color: "white", borderRadius: "4px", border: "none", cursor: "pointer" }}
+          style={{
+            padding: "12px",
+            backgroundColor: "blue",
+            color: "white",
+            borderRadius: "4px",
+            border: "none",
+            cursor: "pointer",
+          }}
         >
           <IoSend />
         </button>

@@ -40,12 +40,15 @@ export default function General({ onSubmit }) {
           setLoading(false);
           window.location.reload()
         }
-      });
+      }).catch((err) => {
+        setLoading(false)
+      })
     }
   };
 
   const validateForm = () => {
     let valid = true;
+    setLoading(false)
     const newErrors = { ...errors };
 
     if (!formData.name.trim()) {

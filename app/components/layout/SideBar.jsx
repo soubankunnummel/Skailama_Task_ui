@@ -13,31 +13,28 @@ import { FaAnglesRight } from "react-icons/fa6";
 export default function SideBar({ isOpen, toggleSidebar }) {
   const RouteName = usePathname();
   const Router = useRouter();
-
   const currentId = useSelector((state) => state.project.id);
-
   const [selectedItem, setSelectedItem] = useState(null);
 
+  
+
   useEffect(() => {
-    if (
-      RouteName.includes(`/podcasts/${currentId}`) &&
-      !RouteName.includes("/Config")
-    ) {
+    if (RouteName.includes(`/podcasts/1`) || RouteName.includes(`/podcasts/${currentId}`)) {
       setSelectedItem("Projects");
-    } else if (RouteName.includes("/podcasts/1/Config")) {
-      setSelectedItem("Widget Configurations");
     }
-    else if (RouteName.includes('/podcasts/1/Settings')){
-      setSelectedItem('Settings')
+    if (RouteName.includes("/podcasts/1/Settings")) {
+      setSelectedItem("Settings");
     }
   }, []);
 
+
+
   // handle item click
   const handleItemClick = (title) => {
-    toggleSidebar()
+    toggleSidebar();
     setSelectedItem(title);
     if (title === "Projects") {
-      Router.push(`/podcasts/${currentId}`);
+      Router.push(`/podcasts/${currentId ? currentId : "1"}`);
     } else if (title === "Widget Configurations") {
       Router.push(`/podcasts/1/Config`);
     } else if (title === "Settings") {
@@ -67,7 +64,7 @@ export default function SideBar({ isOpen, toggleSidebar }) {
             key={index}
             title={item.title}
             num={index + 1}
-            selected={item.title === selectedItem}
+            selected={selectedItem === item.title}
             onClick={() => handleItemClick(item.title)}
             index={index}
             bg={"bg-primery"}

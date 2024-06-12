@@ -20,6 +20,7 @@ export default function Display({ onUpdate }) {
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false)
+  const [isUpdate, setIsUpdate] = useState(false)
 
   const [formValues, setFormValues] = useState({ 
     primaryColor: "",
@@ -34,6 +35,7 @@ export default function Display({ onUpdate }) {
   });
 
   const handleDropdownChange = (name, value) => {
+    setIsUpdate(true)
     const updatedFormValues = { ...formValues, [name]: value };
     setFormValues(updatedFormValues);
   };
@@ -41,6 +43,7 @@ export default function Display({ onUpdate }) {
 
 
   const handleChange = (e) => {
+    setIsUpdate(true)
     const { name, value } = e.target;
     const updatedFormValues = { ...formValues, [name]: value };
     setFormValues(updatedFormValues);
@@ -48,6 +51,7 @@ export default function Display({ onUpdate }) {
 
 
   const handleImageChange = (e) => {
+    setIsUpdate(true)
     const file = e.target.files[0];
     setImageFile(file);
     handleImageUpload(e, (image) => {
@@ -175,7 +179,7 @@ export default function Display({ onUpdate }) {
           onChange={handleChange}
           
         />
-        <div className="flex flex-col">
+        <div className="flex  flex-col">
           <h3 className="text-[20px] font-bold">Bot Icon</h3>
           <div className=" flex justify-start gap-6 items-center p-5">
           <div className="md:w-[80px] md:h-[80px] w-[50px]  h-[50px] rounded-full flex justify-center items-center bg-slate-300  overflow-hidden">
@@ -196,11 +200,14 @@ export default function Display({ onUpdate }) {
               />
               
             </label>
-            <div className="p-2 font-semibold border rounded-md hover:bg-primery hover:border-white flex justify-center items-center border-primery " onClick={handleUpdate}>Update</div>
+          
           </div>
+          
         
         </div>
+        
       </div>
+      {isUpdate && <div className="p-2 font-semibold border rounded-md hover:bg-primery hover:border-white flex justify-center items-center border-primery cursor-pointer " onClick={handleUpdate}>Update</div>}
     </form>
   );
 }

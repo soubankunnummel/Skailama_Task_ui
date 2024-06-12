@@ -50,9 +50,8 @@ function Projects() {
       modalRef.current.close();
     }
   }; 
-
   return (
-    <div className="w-full h-full px-[3%] flex justify-center md:mt-0 mt-20  items-center relaative ">
+    <div className="w-full h-full px-[3%] flex justify-center md:mt-6 mt-20  items-center relaative ">
       <div className="w-[1100px] overflow-y-auto ">
         <BacktoHome />
 
