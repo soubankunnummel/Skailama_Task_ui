@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import ChatBot from "@/app/components/specific/ChatBot";
 import { useWidgets } from "@/app/hooks/useWidgets";
-import Display from "@/app/components/specific/Display";
+import Display from "@/app/components/Display/Display";
 import General from "@/app/components/specific/Genral";
 import TabNavigation from "./TabNavigation";
 import Widget from "@/app/components/specific/Widget";
